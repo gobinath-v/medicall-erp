@@ -1,0 +1,16 @@
+.navbar-vertical.navbar-expand-lg
+    .navbar-collapse
+    .dropdown-menu
+    .dropdown-item.active,
+.navbar-vertical.navbar-expand-lg
+    .navbar-collapse
+    .dropdown-menu
+    .dropdown-item:active {
+    color: #fff;
+}
+.btn-appointment,
+.btn-appointment:hover,
+.btn-appointment:focus {
+    background-color: #f1a922;
+    color: #fff;
+}
