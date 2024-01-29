@@ -27,7 +27,7 @@
                             </div>
                             <div class="card card-md">
                                 <div class="card-body">
-                                    <h1 class="h1 text-center mb-2">Medicall Meet</h1>
+                                    <h1 class="h1 text-center mb-2">Medi-Call Meet</h1>
                                     <h3 class="h3 text-center mb-4">Login to your account</h2>
                                         @include('includes.alerts')
                                         <form method="POST" action="{{ route('login') }}">
