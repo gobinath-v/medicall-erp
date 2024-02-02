@@ -27,7 +27,7 @@
                             </div>
                             <div class="card card-md">
                                 <div class="card-body">
-                                    <h1 class="h1 text-center mb-2">Medi-Call Meet</h1>
+                                    <img src="http://127.0.0.1:8000/theme/images/medicall-logo-min.png" height="150" class="d-block mx-auto" alt="">
                                     <h3 class="h3 text-center mb-4">Login to your account</h2>
                                         @include('includes.alerts')
                                         <form method="POST" action="{{ route('login') }}">

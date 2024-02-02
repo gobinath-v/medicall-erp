@@ -160,7 +160,7 @@
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
 
-                                        {{-- @if (in_array($currentRouteName, [
+                                        @if (in_array($currentRouteName, [
                                                 'event-informations',
                                                 'visitors.summary',
                                                 'exhibitor.summary',
@@ -186,7 +186,7 @@
                                                     Hall Layout
                                                 </span>
                                             </a>
-                                        @endif --}}
+                                        @endif
 
                                         @auth('visitor')
                                             @if (in_array($currentRouteName, [
@@ -426,7 +426,7 @@
                     @endauth
 
 
-                    {{-- @auth('exhibitor')
+                    @auth('exhibitor')
                         <li class="nav-item {{ $currentRouteName == 'exhibitor.profile' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('exhibitor.profile') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -437,7 +437,7 @@
                                 </span>
                             </a>
                         </li>
-                    @endauth --}}
+                    @endauth
 
                     @if (isOrganizer() && request('eventId') === null)
                         <li class="dropdown {{ $masterMenuIsActive ? 'active' : '' }}">
