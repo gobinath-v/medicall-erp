@@ -332,6 +332,15 @@
                                             </a>
                                         @endif
                                     </td>
+                                    <td>
+                                        @if (!$isPreviousEvent)
+                                            <a  href="#myModal" class=" btn"
+                                                title="view" data-toggle="tooltip" data-placement="top">
+                                                @include('icons.view')
+                                            </a>
+
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif

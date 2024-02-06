@@ -43,6 +43,7 @@ use App\Http\Livewire\Import\Visitors as ImportVisitors;
 use App\Http\Livewire\Settings\Employee\EmployeeSummary;
 use App\Http\Livewire\Import\Exhibitors as ImportExhibitors;
 use App\Http\Livewire\MappingToExhibitor;
+use App\Http\Livewire\ViewExhibitor;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,9 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/exhibitor/summary', ExhibitorSummary::class)->name('exhibitor.summary');
     Route::get('/exhibitor/edit/{exhibitorId}/{eventId?}', EditExhibitor::class)->name('exhibitor.edit');
+    // // add the new
+    Route::get('/exhibitor/view/{exhibitorId}/{eventId?}', ViewExhibitor::class)->name('exhibitor.view');
+    // // end the new
     Route::get('/products', ProductSummary::class)->name('products');
     Route::get('/events', EventsSummary::class)->name('events');
     Route::get('/products', ProductSummary::class)->name('products');
