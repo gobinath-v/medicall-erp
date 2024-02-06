@@ -23,7 +23,8 @@ class ViewExhibitor extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $photo;
-    public $
+    public $productList;
+
     public $exhibitor_products = [];
     public $eventId;
     public $categories = [];
@@ -140,20 +141,20 @@ class ViewExhibitor extends Component
             DB::beginTransaction();
             $productList = $this->exhibitor['products'];
             $selectedProducts = [];
-            foreach ($productList as $product) {
+            // foreach ($productList as $product) {
 
-                if ((int) $product) {
-                    $selectedProducts[] = $product;
-                } else {
+            //     if ((int) $product) {
+            //         $selectedProducts[] = $product;
+            //     } else {
 
-                    // Add New Propduct to master
-                    $newProduct = Product::create([
-                        'name' => $product
-                    ]);
+            //         // Add New Propduct to master
+            //         $newProduct = Product::create([
+            //             'name' => $product
+            //         ]);
 
-                    $selectedProducts[] = (string) $newProduct->id;
-                }
-            }
+            //         $selectedProducts[] = (string) $newProduct->id;
+            //     }
+            // }
 
             $this->exhibitorData->update([
 

@@ -13,7 +13,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class EditExhibitor extends Component
