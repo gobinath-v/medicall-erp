@@ -73,12 +73,12 @@
                                         </div>
                                     </form>
 
-                                    {{-- <div class="text-center mx-auto  mt-3">
+                                    <div class="text-center mx-auto  mt-3">
                                         <a href="https://crm.medicall.in/" ><span>
                                             @include('icons.home')
                                             Home Page
                                             </span></a>
-                                    </div> --}}
+                                    </div>
 
                                 </div>
                             </div>
