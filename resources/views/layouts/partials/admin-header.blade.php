@@ -4,10 +4,10 @@
 @endphp
 <header class="navbar navbar-expand-md d-none navbar-light d-lg-flex d-print-none">
     <div class="container-xl ">
-        {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
             aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button> --}}
+        </button>
         @if (
             !(auth()->guard('web')->check() ||
                 auth()->guard('exhibitor')->check() ||
@@ -51,11 +51,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
                             <a href="{{ route('user.profile') }}" class="dropdown-item">Account Info</a>
-                            {{-- <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                            <form method="POST" action="{{ route('logout') }}" id="logout-form">
                                 @csrf
                                 <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit()"
                                     class="dropdown-item text-danger">Logout</a>
-                            </form> --}}
+                            </form>
                         </div>
                     </div>
 

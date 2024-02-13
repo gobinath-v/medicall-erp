@@ -288,9 +288,9 @@
                                                     @endphp
                                                 @endforeach
                                                 @if (count($overallProducts) > 2)
-                                                    {{ implode(', ',collect($overallProducts)->take(2)->all()) }}
+                                                    {{ implode(', ', collect($overallProducts)->take(2)->all()) }}
                                                     <a href="#" data-bs-toggle="tooltip"
-                                                        title="{{ implode(', ',collect($overallProducts)->slice(2)->all()) }}"
+                                                        title="{{ implode(', ', collect($overallProducts)->slice(2)->all()) }}"
                                                         class="fs-5">
                                                         <br>+{{ count($overallProducts) - 2 }} more
                                                     </a>
@@ -334,14 +334,66 @@
                                     </td>
                                     <td>
                                         @if (!$isPreviousEvent)
-                                            <a  href="#myModal" class=" btn"
-                                                title="view" data-toggle="tooltip" data-placement="top">
+                                            <a href="#" wire:click="view({{ $exhibitor->id }})" title="view"
+                                                data-toggle="tooltip" data-placement="top" data-bs-toggle="modal"
+                                                data-bs-target="#views">
                                                 @include('icons.view')
                                             </a>
-
                                         @endif
                                     </td>
                                 </tr>
+                                @if ($isViewing)
+                                    <div wire:ignore.self class="modal" id="views" tabindex="-1"
+                                        role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog ">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">View Profile</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="modal-dialog-centered">
+                                                            <img src="{{ Storage::url($viewPost->logo) }}"
+                                                                class="rounded-circle avatar-xl mx-auto"
+                                                                height="120" width="120" />
+                                                        </div>
+
+                                                        <div
+                                                            class="badge bg-primary, modal-dialog modal-dialog-centered">
+                                                            <label for="viewCompany" class="fw-normal">Company :
+                                                                {{ $exhibitor->name }}</label>
+                                                        </div>
+                                                        <div
+                                                            class="badge bg-primary,  modal-dialog modal-dialog-centered ">
+                                                            <label for="viewEmail" class="fw-normal">Email :
+                                                                {{$exhibitor->email}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="badge bg-primary,  modal-dialog modal-dialog-centered,">
+                                                            <label for="viewEmail" class="fw-normal">Phone :
+                                                                {{ $exhibitor->contact_number }}</label>
+                                                        </div>
+                                                        <div
+                                                            class="badge bg-primary,  modal-dialog modal-dialog-centered ">
+                                                            <label for="viewEmail" class="fw-normal">Designation :
+                                                                {{ $exhibitor->designation }}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                @endif
                             @endforeach
                         @endif
                         @if (isset($exhibitors) && count($exhibitors) == 0)

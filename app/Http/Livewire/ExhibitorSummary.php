@@ -37,6 +37,11 @@ class ExhibitorSummary extends Component
     public $selectAll = false;
     public $showToggle = false;
     public $selectedExhibitors = [];
+    public $isViewing = false;  // This property controls the visibility of the view modal.
+    public $viewPost;
+    public $exhibitor;
+
+
     protected $rules = [
         'stall_space' => 'required',
         'square_space' => 'required',
@@ -54,6 +59,7 @@ class ExhibitorSummary extends Component
         if ($this->search !== null || $this->productSearch !== null) {
             $this->showFilter = true;
         }
+        $exhibitor =Exhibitor::find($this->exhibitor_id);
     }
 
     public function updatedSelectAll($value)
@@ -207,6 +213,17 @@ class ExhibitorSummary extends Component
         }
         return $query->orderBy($this->sortName, $this->sortDirection);
     }
+    public function view($exhibitor_id)
+{
+    $this->viewPost = Exhibitor::find($exhibitor_id); // Replace YourPostModel with the actual model class for your posts.
+    $this->isViewing = true;
+}
+
+// Method to close the view modal.
+public function closeViewModal()
+{
+    $this->isViewing = false;
+}
     public function render()
     {
         $exhibitors = $this->getFilteredExhibitors()->paginate(10);

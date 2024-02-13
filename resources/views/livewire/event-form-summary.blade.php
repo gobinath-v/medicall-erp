@@ -14,7 +14,7 @@
     <div class="container-xl">
         <div class="row row-cards justify-content-between">
             @include('includes.alerts')
-            {{-- <div class="row border"> --}}
+            <div class="row border">
 
             <div class="row col-md-12 pt-3 d-flex justify-content-center ">
 
@@ -257,7 +257,7 @@
                                         All</a>
                                 </div>
                                 <div class="col-md-12">
-                                    {{-- <div class="align-items-center"> --}}
+                                    <div class="align-items-center">
                                     <div class="table-responsive">
                                         <table class="table table-vcenter card-table">
                                             <tbody>
@@ -286,12 +286,12 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{-- </div> --}}
+                                    </div>
                                 </div>
                             </div>
 
 
-                            {{-- <div class="col-md-4 mt-3 card">
+                            <div class="col-md-4 mt-3 card">
                                     <div class="card-header d-flex  justify-content-between">
                                         <h3 class="text text-danger pt-2">Visitor List</h3>
                                         <a href='{{ route('visitors.summary') }}' class="text-decoration-none">See
@@ -327,7 +327,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
 
 
                             <div class="col-md-6 mt-3 card">
@@ -339,7 +339,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    {{-- <div class="align-items-center"> --}}
+                                    <div class="align-items-center">
                                     <div class="table-responsive">
                                         <table class="table table-vcenter card-table">
                                             <tbody>
@@ -374,7 +374,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {{-- </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -402,7 +402,7 @@
 
             </div>
 
-            {{-- </div> --}}
+            </div>
         </div>
     </div>
 </div>

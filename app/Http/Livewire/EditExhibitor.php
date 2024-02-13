@@ -14,12 +14,16 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Str;
 
 class EditExhibitor extends Component
 {
     public $showPassword = false;
     public $categories = [];
+    public $username_exists;
+    public $productList;
+
     public $products = [];
     public $eventId;
     public $countries = [];
@@ -152,7 +156,7 @@ class EditExhibitor extends Component
             DB::beginTransaction();
             $productList = $this->exhibitor['products'];
             $selectedProducts = [];
-            foreach ($productList as $product) {
+            foreach ($this->$productList as $product) {
 
                 if ((int) $product) {
                     $selectedProducts[] = $product;

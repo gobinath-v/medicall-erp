@@ -53,11 +53,11 @@ class EventFormSummary extends Component
                 ->first();
         } else {
             $currentEvent = getCurrentEvent();
-            // Event::where('start_date', '>=', now()->format('Y-m-d'))
-            //     ->orWhere('end_date', '>=', now()->format('Y-m-d'))
-            //     ->select('title', 'start_date', 'end_date', 'id', '_meta')
-            //     ->orderBy('start_date', 'asc')
-            //     ->paginate(1);
+            Event::where('start_date', '>=', now()->format('Y-m-d'))
+                ->orWhere('end_date', '>=', now()->format('Y-m-d'))
+                ->select('title', 'start_date', 'end_date', 'id', '_meta')
+                ->orderBy('start_date', 'asc')
+                ->paginate(1);
         }
 
         $this->currentEventId = $currentEvent->id ?? null;
@@ -68,10 +68,10 @@ class EventFormSummary extends Component
             ->orderBy('start_date', 'asc')
             ->paginate($this->perPage);
 
-        // dd($currentEvent->id, $currentEvent, $this->currentEventId, $upcomingEventThumbnails);
+        // $currentEvent->id, $currentEvent, $this->currentEventId, $upcomingEventThumbnails;
         $exibitorRegisteredEvents = [];
         $visitorRegisteredEvents = [];
-        // foreach ($currentEvent as $event) {
+        foreach ($currentEvent as $event) {
         $isExhibitorRegistered = EventExhibitor::where('event_id', $currentEvent->id)
             ->where('exhibitor_id', getAuthData()->id)
             ->exists();
@@ -81,7 +81,7 @@ class EventFormSummary extends Component
             ->exists();
         $visitorRegisteredEvents[$currentEvent->id] = $isVisitorRegistered;
         $exibitorRegisteredEvents[$currentEvent->id] = $isExhibitorRegistered;
-        // }
+        }
 
         if ($isSalesPerson) {
             $this->mappedExhibitors = mappedExhibitors($this->currentEventId);
@@ -150,3 +150,4 @@ class EventFormSummary extends Component
         ])->layout('layouts.admin');
     }
 }
+
