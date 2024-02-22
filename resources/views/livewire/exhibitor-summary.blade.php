@@ -356,59 +356,69 @@
                                                 </div>
 
                                                 <div class="modal-body">
+
+                                                    <label class="fw-semibold">Company Logo</label>
+                                                    <div class=" modal-dialog modal-dialog-centered">
+                                                        <img src="{{ Storage::url($viewPost->logo) }}"
+                                                            class="rounded-circle avatar-xl mx-auto" height="120"
+                                                            width="120" />
+                                                    </div>
+                                                    <div class="fw-light,  modal-dialog modal-dialog-centered ">
+                                                        <label for="viewcontact" class="fw-light">Contact Person:
+                                                            <strong
+                                                                class="fw-semibold">{{ $viewPost->exhibitorContact->salutation ?? '_' }}.{{ $viewPost->exhibitorContact->name ?? '_' }}</strong><br>
+                                                            <small>{{ $viewPost->exhibitorContact->designation ?? '_' }}</small>
+
+                                                        </label>
+                                                    </div>
                                                     <div class="row">
-                                                        <div class="modal-dialog-centered">
-                                                            <img src="{{ Storage::url($viewPost->logo) }}"
-                                                                class="rounded-circle avatar-xl mx-auto"
-                                                                height="120" width="120" />
+                                                        <div class="fw-light,col-md-4">
+                                                            <label for="viewCompany" class="fw-semibold">Company :</label>
+                                                               <label> {{ $viewPost->name }}</label>
                                                         </div>
 
-                                                        <div
-                                                            class="badge bg-primary, modal-dialog modal-dialog-centered">
-                                                            <label for="viewCompany" class="fw-normal">Company :
-                                                                {{ $exhibitor->name }}</label>
-                                                        </div>
-                                                        <div
-                                                            class="badge bg-primary,  modal-dialog modal-dialog-centered ">
-                                                            <label for="viewEmail" class="fw-normal">Email :
-                                                                {{$exhibitor->email}}</label>
+                                                        <div class="fw-light,col-md-4 ms-auto">
+                                                            <label for="viewEmail" class="fw-semibold">Email :</label>
+                                                               <label> {{ $viewPost->email }}</label>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="badge bg-primary,  modal-dialog modal-dialog-centered,">
-                                                            <label for="viewEmail" class="fw-normal">Phone :
-                                                                {{ $exhibitor->contact_number }}</label>
+                                                        <div class="fw-light">
+                                                            <label for="viewEmail" class="fw-semibold">Phone :</label>
+                                                               <label> {{ $viewPost->mobile_number }}</label>
                                                         </div>
-                                                        <div
-                                                            class="badge bg-primary,  modal-dialog modal-dialog-centered ">
-                                                            <label for="viewEmail" class="fw-normal">Designation :
-                                                                {{ $exhibitor->designation }}</label>
+                                                        <div class="fw-light ">
+                                                            <label for="viewEmail" class="fw-semibold">City:</label>
+                                                               <label> {{ $viewPost->address->city ?? '_' }} </label>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
-
                                         </div>
-                                @endif
-                            @endforeach
-                        @endif
-                        @if (isset($exhibitors) && count($exhibitors) == 0)
-                            @livewire('not-found-record-row', ['colspan' => 12])
-                        @endif
-                    </tbody>
-                </table>
+
+                                    </div>
             </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-end">
-                    {{ $exhibitors->links() }}
-                </div>
+            @endif
+            @endforeach
+            @endif
+            @if (isset($exhibitors) && count($exhibitors) == 0)
+                @livewire('not-found-record-row', ['colspan' => 12])
+            @endif
+            </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-end">
+                {{ $exhibitors->links() }}
             </div>
         </div>
     </div>
+</div>
 </div>
 @push('scripts')
     <script>

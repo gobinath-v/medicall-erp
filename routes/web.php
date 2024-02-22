@@ -2,6 +2,7 @@
 
 
 use App\Http\Livewire\AnnouncementSummary;
+use App\Http\Livewire\ExhibitorAppointment;
 use App\Models\User;
 use App\Models\Visitor;
 
@@ -121,6 +122,8 @@ Route::middleware(['auth:exhibitor'])->group(function () {
     Route::get('/exhibitor/profile', ExhibitorProfile::class)->name('exhibitor.profile');
     Route::get('/myproducts', MyProductSummary::class)->name('myproducts');
     Route::view('/exhibitor-dashboard', 'dashboards.exhibitor-dashboard')->name('dashboard.exhibitor');
+    Route::get('/exhibitor-appoints', ExhibitorAppointment::class)->name('exhibitor.appointment');
+
 });
 
 Route::middleware(['auth:web'])->group(function () {
@@ -129,6 +132,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/admin-dashboard/{eventId?}', EventFormSummary::class)->name('admin-dashboard');
 
     Route::get('/appointment', AppointmentSummary::class)->name('appointment.summary');
+
 });
 
 Route::middleware(['auth:visitor'])->group(function () {

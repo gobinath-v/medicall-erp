@@ -1,7 +1,7 @@
 @php
     $previousEvents = getPreviousEvents();
     $eventId = request('eventId');
-    $isPreviousEvent = in_array( $eventId, $previousEvents->pluck('id')->toArray());
+    $isPreviousEvent = in_array($eventId, $previousEvents->pluck('id')->toArray());
     $currentRouteName = Route::currentRouteName();
     $previousEventActive = in_array($currentRouteName, ['admin-dashboard', 'exhibitor.summary', 'appointment.summary', 'visitors.summary', 'visitors.edit', 'exhibitor.edit']);
     $masterMenuIsActive = in_array($currentRouteName, ['exhibitor.edit', 'visitors.edit', 'employees.index', 'visitors.summary', 'exhibitor.summary', 'events', 'category', 'products']);
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class=" d-md-flex " >
+            <div class=" d-md-flex ">
                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
                     @csrf
                     <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit()"
@@ -233,8 +233,7 @@
                                             @endif
                                         @endauth
 
-                                        @if (auth()->guard('visitor')->check() ||
-                                                auth()->guard('exhibitor')->check() )
+                                        @if (auth()->guard('visitor')->check() || auth()->guard('exhibitor')->check())
                                             @if (in_array($currentRouteName, [
                                                     'event-informations',
                                                     'myappointments',
@@ -274,7 +273,6 @@
                                                     'exhibitor.directory',
                                                     'myappointments',
                                                     'import.exhibitors',
-
                                                 ]) &&
                                                 request('eventId') !== null)
                                             <a class="dropdown-item nav-link  {{ $currentRouteName == 'visitors.summary' || $currentRouteName == 'visitors.edit' ? 'active' : '' }}"
@@ -349,7 +347,6 @@
                             <div class="dropdown-menu {{ $previousEventActive && $isPreviousEvent ? 'show' : '' }}">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        {{-- @if (in_array($previousEventActive, ['visitors.summary', 'exhibitor.summary', 'appointment.summary', 'visitors.edit', 'exhibitor.edit', 'admin-dashboard'])) --}}
 
                                         @foreach ($previousEvents as $event)
                                             <div wire:key='event-{{ $event->id }}'
@@ -363,9 +360,9 @@
                                                     </span>
                                                 </a>
 
-                                                <div  wire:key='event-{{ $event->id }}'
-                                                    class="dropdown-menu {{ $previousEventActive && $isPreviousEvent && $eventId ==  $event->id ? 'show' : '' }}">
-                                                    <a class="dropdown-item nav-link  {{ $currentRouteName == 'admin-dashboard' && $isPreviousEvent && $eventId ==  $event->id ? 'active' : '' }}"
+                                                <div wire:key='event-{{ $event->id }}'
+                                                    class="dropdown-menu {{ $previousEventActive && $isPreviousEvent && $eventId == $event->id ? 'show' : '' }}">
+                                                    <a class="dropdown-item nav-link  {{ $currentRouteName == 'admin-dashboard' && $isPreviousEvent && $eventId == $event->id ? 'active' : '' }}"
                                                         href="{{ route('admin-dashboard', ['eventId' => $event->id]) }}">
                                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                             @include('icons.plus')
@@ -374,7 +371,7 @@
                                                             Event Dashboard
                                                         </span>
                                                     </a>
-                                                    <a class="dropdown-item nav-link  {{ ($currentRouteName == 'visitors.summary' || $currentRouteName == 'visitors.edit') && $isPreviousEvent && $eventId ==  $event->id ? 'active' : '' }}"
+                                                    <a class="dropdown-item nav-link  {{ ($currentRouteName == 'visitors.summary' || $currentRouteName == 'visitors.edit') && $isPreviousEvent && $eventId == $event->id ? 'active' : '' }}"
                                                         href="{{ route('visitors.summary', ['eventId' => $event->id]) }}">
                                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                             @include('icons.users-group')
@@ -383,7 +380,7 @@
                                                             Visitors
                                                         </span>
                                                     </a>
-                                                    <a class="dropdown-item nav-link {{ ($currentRouteName == 'exhibitor.summary' || $currentRouteName == 'exhibitor.edit') && $isPreviousEvent && $eventId ==  $event->id  ? 'active' : '' }}"
+                                                    <a class="dropdown-item nav-link {{ ($currentRouteName == 'exhibitor.summary' || $currentRouteName == 'exhibitor.edit') && $isPreviousEvent && $eventId == $event->id ? 'active' : '' }}"
                                                         href="{{ route('exhibitor.summary', ['eventId' => $event->id]) }}">
                                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                             @include('icons.building-skyscraper')
@@ -392,7 +389,7 @@
                                                             Exhibitors
                                                         </span>
                                                     </a>
-                                                    <a class="dropdown-item nav-link {{ $currentRouteName == 'appointment.summary' && $isPreviousEvent && $eventId ==  $event->id   ? 'active' : '' }}"
+                                                    <a class="dropdown-item nav-link {{ $currentRouteName == 'appointment.summary' && $isPreviousEvent && $eventId == $event->id ? 'active' : '' }}"
                                                         href="{{ route('appointment.summary', ['eventId' => $event->id]) }}">
                                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                             @include('icons.calendar-event')
@@ -405,7 +402,7 @@
                                             </div>
                                         @endforeach
 
-                                        {{-- @endif --}}
+
                                     </div>
                                 </div>
                             </div>
@@ -436,6 +433,56 @@
                                     Profile
                                 </span>
                             </a>
+                        </li>
+                    @endauth
+                    @auth('exhibitor')
+                        <li class="dropdown {{ $previousEventActive ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle " href="#navbar-help" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside" role="button"
+                                aria-expanded="{{ $previousEventActive ? 'true' : 'false' }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    @include('icons.previous-squre-filled')
+                                </span>
+                                <span class="nav-link-title">
+                                    Previous Events
+                                </span>
+                            </a>
+
+                            <div class="dropdown-menu {{ $previousEventActive && $isPreviousEvent ? 'show' : '' }}">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+
+                                        @foreach ($previousEvents as $event)
+                                            <div wire:key='event-{{ $event->id }}'
+                                                class="dropend {{ $previousEventActive ? 'show' : '' }}">
+                                                <a class="dropdown-item dropdown-toggle " href="#sidebar-authentication"
+                                                    data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button"
+                                                    aria-expanded="false">
+                                                    <span class="nav-link-title text-wrap ">
+                                                        {{ $event->title ?? 'Previous Event' }}
+                                                    </span>
+
+                                                </a>
+                                                    <div wire:key='event-{{ $event->id }}'
+                                                        class="dropdown-menu {{ $previousEventActive && $isPreviousEvent && $eventId == $event->id ? 'show' : '' }}">
+                                                        <a class="dropdown-item nav-link {{ $currentRouteName == 'myappointments' && $isPreviousEvent && $eventId == $event->id ? 'active' : '' }}"
+                                                            href="{{ route('myappointments', ['eventId' => $event->id, 'appointmentStatus' => 'completed','no-show'])}}">
+                                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                                @include('icons.calendar-event')
+                                                            </span>
+                                                            <span class="nav-link-title">
+                                                                My Appointments
+                                                            </span>
+                                                        </a>
+                                                    </div>
+
+
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
                         </li>
                     @endauth
 

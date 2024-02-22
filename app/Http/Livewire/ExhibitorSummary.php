@@ -215,7 +215,7 @@ class ExhibitorSummary extends Component
     }
     public function view($exhibitor_id)
 {
-    $this->viewPost = Exhibitor::find($exhibitor_id); // Replace YourPostModel with the actual model class for your posts.
+    $this->viewPost= Exhibitor::find($exhibitor_id); // Replace YourPostModel with the actual model class for your posts.
     $this->isViewing = true;
 }
 

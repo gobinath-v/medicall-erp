@@ -19,6 +19,7 @@ class MyAppointments extends Component
 
     public $perPage = 10;
 
+
     public $toggleContent = false;
 
     public $search, $dateFilter;
@@ -317,5 +318,6 @@ class MyAppointments extends Component
             $this->resetPage();
         }
     }
+
 
 }
